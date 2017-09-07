@@ -1,4 +1,4 @@
-# graphmob-api-go
+# graphmob-api-ruby
 
 Graphmob API Ruby.
 
