@@ -44,7 +44,7 @@ To authenticate against the API, generate your tokens (`user_id` and `secret_key
 Then, pass those tokens **once** when you instanciate the Graphmob client as following:
 
 ```ruby
-// Make sure to replace 'user_id' and 'secret_key' with your tokens
+# Make sure to replace 'user_id' and 'secret_key' with your tokens
 client.authenticate("user_id", "secret_key")
 ```
 
