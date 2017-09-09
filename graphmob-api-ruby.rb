@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.name          = 'graphmob-api-ruby'
+  s.name          = 'graphmob'
   s.version       = '1.0.2'
   s.date          = Date.today
   s.summary       = "Graphmob API Ruby"
