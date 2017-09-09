@@ -12,13 +12,13 @@ Copyright 2017 Graphmob. See LICENSE for copying information.
 Add the library to your `Gemfile`:
 
 ```bash
-gem 'graphmob', '~> 1.0'
+gem 'graphmob-api', '~> 1.0'
 ```
 
 Then, import it:
 
 ```ruby
-require 'graphmob'
+require 'graphmob-api'
 ```
 
 Construct a new authenticated Graphmob client with your `user_id` and `secret_key` tokens (you can generate those from your Graphmob Dashboard, [see the docs](https://docs.graphmob.com/api/v1/)).

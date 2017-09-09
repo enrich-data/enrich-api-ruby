@@ -5,7 +5,7 @@
 # Author: Valerian Saliou <valerian@valeriansaliou.name>
 ##
 
-require 'graphmob'
+require 'graphmob-api'
 
 client = Graphmob::Client.new
 
