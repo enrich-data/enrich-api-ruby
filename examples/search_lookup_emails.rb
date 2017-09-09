@@ -1,5 +1,5 @@
 ##
-# graphmob-api-node
+# graphmob-api-ruby
 #
 # Copyright 2017, Valerian Saliou
 # Author: Valerian Saliou <valerian@valeriansaliou.name>

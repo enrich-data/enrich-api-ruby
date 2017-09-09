@@ -1,5 +1,5 @@
 ##
-# graphmob-api-node
+# graphmob-api-ruby
 #
 # Copyright 2017, Valerian Saliou
 # Author: Valerian Saliou <valerian@valeriansaliou.name>
@@ -76,7 +76,7 @@ module Graphmob
             :password => @auth["secret_key"],
 
             :headers => {
-              :user_agent => "graphmob-api-ruby/1.0.1",
+              :user_agent => "graphmob-api-ruby/1.0.2",
               :accept => :json,
               :content_type => :json,
               :params => query
