@@ -24,4 +24,5 @@ module Graphmob
     def network(query)
       return @parent._get("/enrich/network", query)
     end
+  end
 end

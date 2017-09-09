@@ -5,12 +5,12 @@
 # Author: Valerian Saliou <valerian@valeriansaliou.name>
 ##
 
-require 'rubygems'
 require 'rest-client'
+require 'json'
 
-require 'resources/enrich'
-require 'resources/search'
-require 'resources/verify'
+require_relative 'resources/enrich'
+require_relative 'resources/search'
+require_relative 'resources/verify'
 
 module Graphmob
   class Client
@@ -20,6 +20,10 @@ module Graphmob
     attr_accessor :enrich
     attr_accessor :search
     attr_accessor :verify
+
+    @@created_status_code = 201
+    @@not_found_status_code = 404
+    @@created_retry_count_max = 2
 
     def initialize()
       @auth = {}
@@ -48,30 +52,63 @@ module Graphmob
       @timeout || 5
     end
 
-    protected
-
     def _get(resource, query)
-      # TODO: retries
-
-      return JSON.parse(
-        RestClient::Request.execute(
-          :url => @__prepare_rest_url(resource),
-          :method => :get,
-          :timeout => self.timeout,
-
-          :user => @auth["user_id"],
-          :password => @auth["secret_key"],
-
-          :headers => {
-            params: query
-          }
-        )
-      )
+      self._do_get(resource, query, 0, 0)
     end
 
-    private
+    protected
 
-    def __prepare_rest_url(resource)
+    def _do_get(resource, query, retry_count, hold_for_seconds)
+      # Abort?
+      if retry_count > @@created_retry_count_max
+        raise RestClient::NotFound
+      else
+        # Hold.
+        sleep hold_for_seconds
+
+        begin
+          response = RestClient::Request.execute(
+            :url => self._prepare_rest_url(resource),
+            :method => :get,
+            :timeout => @timeout,
+
+            :user => @auth["user_id"],
+            :password => @auth["secret_key"],
+
+            :headers => {
+              :accept => :json,
+              :content_type => :json,
+              :params => query
+            }
+          )
+
+          status = response.code
+        rescue RestClient::NotFound
+          status = @@not_found_status_code
+        end
+
+        # Re-schedule request? (created)
+        if status == @@created_status_code || (retry_count > 0 &&
+            status == @@not_found_status_code)
+          if response && response.headers[:retry_after]
+            hold_for_seconds = Integer(response.headers[:retry_after])
+          end
+
+          return self._do_get(
+            resource, query, retry_count + 1, hold_for_seconds
+          )
+        end
+
+        # Not found?
+        if status == @@not_found_status_code
+          raise RestClient::NotFound
+        end
+
+        return JSON.parse(response)
+      end
+    end
+
+    def _prepare_rest_url(resource)
       return self.rest_host + self.rest_base_path + resource
     end
   end

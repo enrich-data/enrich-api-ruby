@@ -24,4 +24,5 @@ module Graphmob
     def suggest_companies(query, page_number = 1)
       return @parent._get("/search/suggest/companies/#{page_number}", query)
     end
+  end
 end

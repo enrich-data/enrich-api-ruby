@@ -20,4 +20,5 @@ module Graphmob
     def format_email(query)
       return @parent._get("/verify/format/email", query)
     end
+  end
 end
