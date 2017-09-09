@@ -12,12 +12,12 @@ Copyright 2017 Graphmob. See LICENSE for copying information.
 Add the library to your `Gemfile`:
 
 ```bash
-gem 'graphmob-api', '~> 1.0'
+gem 'graphmob', '~> 1.0'
 ```
 
 Then, import it:
 
-```javascript
+```ruby
 require 'graphmob'
 ```
 
