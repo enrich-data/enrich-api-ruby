@@ -76,7 +76,7 @@ module Graphmob
             :password => @auth["secret_key"],
 
             :headers => {
-              :user_agent => "graphmob-api-ruby/1.0.3",
+              :user_agent => "graphmob-api-ruby/1.0.4",
               :accept => :json,
               :content_type => :json,
               :params => query

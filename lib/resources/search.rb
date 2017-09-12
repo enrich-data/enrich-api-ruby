@@ -13,6 +13,10 @@ module Graphmob
       @parent = parent
     end
 
+    def lookup_people(query, page_number = 1)
+      return @parent._get("/search/lookup/people/#{page_number}", query)
+    end
+
     def lookup_companies(query, page_number = 1)
       return @parent._get("/search/lookup/companies/#{page_number}", query)
     end

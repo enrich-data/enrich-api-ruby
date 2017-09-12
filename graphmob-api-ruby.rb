@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name          = 'graphmob-api'
-  s.version       = '1.0.3'
+  s.version       = '1.0.4'
   s.date          = Date.today
   s.summary       = "Graphmob API Ruby"
   s.description   = "Graphmob API Ruby"
