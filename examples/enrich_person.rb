@@ -1,13 +1,13 @@
 ##
-# graphmob-api-ruby
+# enrich-api-ruby
 #
 # Copyright 2017, Valerian Saliou
 # Author: Valerian Saliou <valerian@valeriansaliou.name>
 ##
 
-require 'graphmob-api'
+require 'enrich-api'
 
-client = Graphmob::Client.new
+client = Enrich::Client.new
 
 client.authenticate(
   "ui_a311da78-6b89-459c-8028-b331efab20d5",

@@ -1,5 +1,5 @@
 ##
-# graphmob-api-ruby
+# enrich-api-ruby
 #
 # Copyright 2017, Valerian Saliou
 # Author: Valerian Saliou <valerian@valeriansaliou.name>
@@ -12,7 +12,7 @@ require_relative 'resources/enrich'
 require_relative 'resources/search'
 require_relative 'resources/verify'
 
-module Graphmob
+module Enrich
   class Client
     attr_writer :rest_host
     attr_writer :rest_base_path
@@ -28,9 +28,9 @@ module Graphmob
     def initialize()
       @auth = {}
 
-      @enrich = Graphmob::Enrich.new(self)
-      @search = Graphmob::Search.new(self)
-      @verify = Graphmob::Verify.new(self)
+      @enrich = Enrich::EnrichResource.new(self)
+      @search = Enrich::SearchResource.new(self)
+      @verify = Enrich::VerifyResource.new(self)
     end
 
     public
@@ -41,7 +41,7 @@ module Graphmob
     end
 
     def rest_host
-      @rest_host || "https://api.graphmob.com"
+      @rest_host || "https://api.enrichdata.com"
     end
 
     def rest_base_path
@@ -76,7 +76,7 @@ module Graphmob
             :password => @auth["secret_key"],
 
             :headers => {
-              :user_agent => "graphmob-api-ruby/1.0.4",
+              :user_agent => "enrich-api-ruby/1.1.0",
               :accept => :json,
               :content_type => :json,
               :params => query

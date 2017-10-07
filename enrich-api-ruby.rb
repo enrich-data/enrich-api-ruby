@@ -1,13 +1,13 @@
 Gem::Specification.new do |s|
-  s.name          = 'graphmob-api'
-  s.version       = '1.0.4'
+  s.name          = 'enrich-api'
+  s.version       = '1.1.0'
   s.date          = Date.today
-  s.summary       = "Graphmob API Ruby"
-  s.description   = "Graphmob API Ruby"
+  s.summary       = "Enrich API Ruby"
+  s.description   = "Enrich API Ruby"
   s.authors       = ["Valerian Saliou"]
   s.email         = 'valerian@valeriansaliou.name'
   s.files         = `git ls-files`.split($/)
-  s.homepage      = 'https://graphmob.com'
+  s.homepage      = 'https://enrichdata.com'
   s.license       = 'MIT'
   s.require_paths = ['lib']
 

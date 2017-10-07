@@ -1,5 +1,5 @@
 ##
-# graphmob-api-ruby
+# enrich-api-ruby
 #
 # Copyright 2017, Valerian Saliou
 # Author: Valerian Saliou <valerian@valeriansaliou.name>
@@ -7,8 +7,8 @@
 
 require 'rest-client'
 
-module Graphmob
-  class Verify
+module Enrich
+  class VerifyResource
     def initialize(parent)
       @parent = parent
     end
