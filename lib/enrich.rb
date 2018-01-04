@@ -70,7 +70,7 @@ module Enrich
           response = RestClient::Request.execute(
             :url => self._prepare_rest_url(resource),
             :method => :get,
-            :timeout => @timeout,
+            :timeout => self.timeout,
 
             :user => @auth["user_id"],
             :password => @auth["secret_key"],
