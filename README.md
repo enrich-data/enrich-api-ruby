@@ -12,7 +12,7 @@ Copyright 2017 Enrich. See LICENSE for copying information.
 Add the library to your `Gemfile`:
 
 ```bash
-gem 'enrich-api', '~> 1.0'
+gem 'enrich-api', '~> 1.1'
 ```
 
 Then, import it:
