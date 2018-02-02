@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name          = 'enrich-api'
-  s.version       = '1.1.1'
+  s.version       = '1.1.2'
   s.date          = Date.today
   s.summary       = "Enrich API Ruby"
   s.description   = "Enrich API Ruby"

@@ -9,7 +9,6 @@ require 'rest-client'
 require 'json'
 
 require_relative 'resources/enrich'
-require_relative 'resources/search'
 require_relative 'resources/verify'
 
 module Enrich
@@ -18,7 +17,6 @@ module Enrich
     attr_writer :rest_base_path
 
     attr_accessor :enrich
-    attr_accessor :search
     attr_accessor :verify
 
     @@created_status_code = 201
@@ -29,7 +27,6 @@ module Enrich
       @auth = {}
 
       @enrich = Enrich::EnrichResource.new(self)
-      @search = Enrich::SearchResource.new(self)
       @verify = Enrich::VerifyResource.new(self)
     end
 
@@ -76,7 +73,7 @@ module Enrich
             :password => @auth["secret_key"],
 
             :headers => {
-              :user_agent => "enrich-api-ruby/1.1.1",
+              :user_agent => "enrich-api-ruby/1.1.2",
               :accept => :json,
               :content_type => :json,
               :params => query
