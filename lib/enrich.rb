@@ -21,7 +21,7 @@ module Enrich
 
     @@created_status_code = 201
     @@not_found_status_code = 404
-    @@created_retry_count_max = 2
+    @@created_retry_count_max = 10
 
     def initialize()
       @auth = {}
