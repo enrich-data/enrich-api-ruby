@@ -73,7 +73,7 @@ module Enrich
             :password => @auth["secret_key"],
 
             :headers => {
-              :user_agent => "enrich-api-ruby/1.1.4",
+              :user_agent => "enrich-api-ruby/1.1.5",
               :accept => :json,
               :content_type => :json,
               :params => query
