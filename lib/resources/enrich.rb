@@ -17,6 +17,10 @@ module Enrich
       return @parent._get("/enrich/person", query)
     end
 
+    def company(query)
+      return @parent._get("/enrich/company", query)
+    end
+
     def network(query)
       return @parent._get("/enrich/network", query)
     end
