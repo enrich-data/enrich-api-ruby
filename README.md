@@ -95,7 +95,7 @@ data = client.enrich.person({
 
 ```ruby
 data = client.enrich.company({
-  name: "Crisp IM"
+  domain: "crisp.chat"
 })
 ```
 
