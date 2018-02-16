@@ -19,10 +19,6 @@ module Enrich
     attr_accessor :enrich
     attr_accessor :verify
 
-    @@created_status_code = 201
-    @@not_found_status_code = 404
-    @@created_retry_count_max = 10
-
     def initialize()
       @auth = {}
 
@@ -46,64 +42,33 @@ module Enrich
     end
 
     def timeout
-      @timeout || 5
+      @timeout || 40
     end
 
     def _get(resource, query)
-      self._do_get(resource, query, 0, 0)
+      self._do_get(resource, query)
     end
 
     protected
 
-    def _do_get(resource, query, retry_count, hold_for_seconds)
-      # Abort?
-      if retry_count > @@created_retry_count_max
-        raise RestClient::NotFound
-      else
-        # Hold.
-        sleep hold_for_seconds
+    def _do_get(resource, query)
+      response = RestClient::Request.execute(
+        :url => self._prepare_rest_url(resource),
+        :method => :get,
+        :timeout => self.timeout,
 
-        begin
-          response = RestClient::Request.execute(
-            :url => self._prepare_rest_url(resource),
-            :method => :get,
-            :timeout => self.timeout,
+        :user => @auth["user_id"],
+        :password => @auth["secret_key"],
 
-            :user => @auth["user_id"],
-            :password => @auth["secret_key"],
+        :headers => {
+          :user_agent => "enrich-api-ruby/1.2.0",
+          :accept => :json,
+          :content_type => :json,
+          :params => query
+        }
+      )
 
-            :headers => {
-              :user_agent => "enrich-api-ruby/1.1.5",
-              :accept => :json,
-              :content_type => :json,
-              :params => query
-            }
-          )
-
-          status = response.code
-        rescue RestClient::NotFound
-          status = @@not_found_status_code
-        end
-
-        # Re-schedule request? (created)
-        if status == @@created_status_code || (retry_count > 0 &&
-            status == @@not_found_status_code)
-          if response && response.headers[:retry_after]
-            hold_for_seconds = Integer(response.headers[:retry_after])
-          end
-
-          return self._do_get(
-            resource, query, retry_count + 1, hold_for_seconds
-          )
-        end
-
-        # Not found?
-        if status == @@not_found_status_code
-          raise RestClient::NotFound
-        end
-
-        return JSON.parse(response)
-      end
+      return JSON.parse(response)
     end
 
     def _prepare_rest_url(resource)
