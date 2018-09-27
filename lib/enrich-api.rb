@@ -34,7 +34,7 @@ module Enrich
     end
 
     def rest_host
-      @rest_host || "https://api.enrichdata.com"
+      @rest_host || "https://api.enrich.email"
     end
 
     def rest_base_path
@@ -61,7 +61,7 @@ module Enrich
         :password => @auth["secret_key"],
 
         :headers => {
-          :user_agent => "enrich-api-ruby/1.2.0",
+          :user_agent => "enrich-api-ruby/2.0.0",
           :accept => :json,
           :content_type => :json,
           :params => query
